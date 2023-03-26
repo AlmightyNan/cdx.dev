@@ -26,7 +26,7 @@ From now you can use this command:
 
 ## Demo
 
-![https://raw.githubusercontent.com/AlmightyNan/cdx.dev/main/assets/image.png]
+!(https://raw.githubusercontent.com/AlmightyNan/cdx.dev/main/assets/image.png)
 
 ## Authors
 

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>cdx.dev - run python code online</title>
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online Python - IDE, Editor, Compiler, Interpreter (By Haidar)</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <meta name="description" content="Build and Run your Python code instantly. Online-Python is a quick and easy tool that helps you to build, compile, test your python programs.">
+    <meta name="keywords" content="online python compiler, online python ide, online python interpreter, python online interpreter, online python editor, online python 3, online python code runner, run python script online, online python code editor, online python syntax checker, online python with numpy, online python text editor, python online ide free, online python editor free">
+    <meta name="author" content="online-python">
+    <meta name="copyright" content="ShareAlike">
+
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <link rel="icon" type="image/png" href="https://www.online-python.com/logo.png">
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="https://www.online-python.com/assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://www.online-python.com/assets/dist/css/ide.css?v=a1">
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <!-- jQuery 3 -->
+    <script src="https://www.online-python.com/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="https://www.online-python.com/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://www.online-python.com/assets/dist/js/ide.js?v=a1"></script>
+
+    <!-- Ace Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.8/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.8/ext-language_tools.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.8/ext-settings_menu.min.js" type="text/javascript" charset="utf-8"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.8/ext-keybinding_menu.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Split JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
+
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1755613,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+
+</head>
+<body>
+<div>
+<nav class="nav navbar-top primary">
+    <h1 class="nav_logo">
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+</style>
+        <a href="https://github.com/almightynan" target = "_blank"><img src="code.png" alt="IDE" width="40" height="34" style="margin-top: -7px"></a>
+        <span style="font-family: 'Quicksand', sans-serif;">
+            cdx.dev
+        </span>
+    </h1>
+</nav>
+<div class="container" id="container">
+    <div id="header-control">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-custom" id="open_file" onclick="openFile(dispFile)" data-toggle="tooltip" data-container="body" data-placement="right" title="Open File from Disk"><i><img src="assets/folder.png" alt=""></i></button>
+            <button type="button" class="btn btn-default btn-custom" onclick="save_code_modal()" id="save_file" data-toggle="tooltip" data-container="body" data-placement="right" title="Save File to Disk - F9"><i><img src="assets/files.png" alt=""></i></button>
+            <button type="button" class="btn btn-default btn-custom" id="undo-editor" data-toggle="tooltip" data-container="body" data-placement="right" title="Undo / Crtl+z"><i><img src="assets/undo.png" alt=""></i></button>
+            <button type="button" class="btn btn-default btn-custom" id="redo-editor" data-toggle="tooltip" data-container="body" data-placement="right" title="Redo / Crtl+y"><i><img src="assets/redo.png" alt=""></i></button>
+        </div>
+
+    </div>
+    <div id="mi" class="split">
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active" id="editor-1"><a data-toggle="tab">main.py</a></li>
+            <li id="new_file_btn"><button type="button" class="btn btn-default btn-sm add-editor" id="create_tab" data-title="New File"><i class="fas fa-plus"></i></button></li>
+        </ul>
+
+        <div id="editor"></div>
+        <div class="boxed" id="editor_footer"></div>
+
+        <div class="control-bar">
+            <div id="control-btn">
+            <button type="button" class="btn btn-success btn-sm" id="run-btn" onclick="run_python()" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-content="Shortcut key: F8"><i class="fa fa-play"></i>&ensp;<strong>Run</strong></button>
+            </div>
+            <input class="textbox" type="text" id="input_arguments" placeholder="CMD arguments (optional)">
+        </div>
+
+    </div>
+
+    <div id="d" class="split">
+        <div class="boxed1" id="output_header">
+            <div id="hint-section"></div>
+            <div class="btn-group status" id="tool-btn">
+                <button type="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Copy log" class="btn btn-default btn-sm status" onclick="copy_output()"><i><img src="assets/clipboard.png"></i></button>
+                <button type="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Download log" class="btn btn-default btn-sm status" onclick="download_modal()"><i><img src="assets/log.png"></i></button>
+                <button type="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Clear console" class="btn btn-default btn-sm status" onclick="clear_output()"><i><img src="assets/erase.png"></i></button>
+            </div>
+            <button type="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Launch IDLE Shell" class="btn btn-default btn-sm status" id="start-term" onclick="start_terminal()"><i><img src="assets/console.png"></i></button>
+            <button type="button" data-toggle="tooltip" data-container="body" data-placement="right" title="Maximize/Minimize" class="btn btn-default btn-sm status" id="term-expand" onclick="term_expand()"><i><img src="assets/expand.png"></i></button>
+            &ensp;
+            <div id="output-status"></div>
+        </div>
+
+        <div id="terminal">
+            <div id="progress-status"></div>
+            <p style="color: white;font-family: monospace;">Hello world! Use the run button or press F8 to run a file.</p>
+            <div class="boxed2" id="output">
+                <div class="wrapper" id="wrap"></div>
+                <form id="term-form">
+                    <input id="term-input" autocomplete="off">
+                </form>
+            </div>
+        
+            <div id="terminal-ad">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Save Result modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="downloadResult">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3 class="modal-title">Download log</h3>
+            </div>
+
+            <div class="modal-body">
+              <form>
+              <div class="form-group">
+                  <label for="name">Filename:</label>
+                  <input type="text" class="form-control" id="download_file_name" value="log.txt">
+              </div>
+              </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Exit</button>
+                <button type="submit" class="btn btn-primary" onclick="download_output()" data-dismiss="modal">Download</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Delete Editor Tab modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="closeEditorTab">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="close_file_title">Close file</h3>
+      </div>
+
+        <div class="modal-body">
+        <p>You did not save the file, your file will me permanently lost. Are you sure you want to continue?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="submit" class="btn btn-primary" onclick="close_editor_tab()" data-dismiss="modal">Yes</button>
+        </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Delete Editor Tab modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="saveEditorTab">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title" id="save_file_title">Save file to Disk</h3>
+        </div>
+
+        <div class="modal-body">
+            <form>
+            <div class="form-group">
+                <label for="name">Filename:</label>
+                <input type="text" class="form-control" id="code_file_name" value="main.py">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="submit" class="btn btn-primary" onclick="download_code()" data-dismiss="modal">Yes</button>
+        </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Share modal -->
+        
+        <!-- <div class="modal-footer">
+        </div> -->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Share modal After -->
+
+
+
+
+
+
+<script type="text/javascript">
+    ace.require("ace/ext/language_tools");
+    var editor = ace.edit("editor");
+    ace.require('ace/ext/settings_menu').init(editor);
+    var editor_cnt = 1, editor_index = 1, active_editor = 1, editor_session = [];
+    var request, init_ts, open_file_name;
+    var lang = 'python3';
+    default_content = "# Online compiler to run your python code.\n\
+# Write your python code and press F8 to execute.\n\
+# IDLE Shell is available, use the left corner of the terminal space.\n\
+\n\
+def addition(a, b):\n\
+    return (a + b)\n\
+\n\
+a = int(input('First number to add: '))\n\
+b = int(input('Second number to add: '))\n\
+\n\
+print(f'Adding {a} and {b} yields {addition(a, b)}.')\n\
+";
+    var prev_result = 'in'; 
+    var site_url = "https://www.online-python.com/"
+    var base_url = "https://www.online-python.com/"
+    var share_url = base_url;
+    var exe_cnt = 0;
+    var addthis_share = {
+        url: share_url,
+        // title: "THE TITLE",
+        // description: "THE DESCRIPTION",
+        // media: "THE IMAGE"
+    }
+
+
+    var isMobile = window.orientation > -1;
+    
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "preventOpenDuplicates": true,
+        "maxOpened": 1,
+        "onclick": null,
+        "showDuration": "100",
+        "hideDuration": "1000",
+        "timeOut": "3000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        // "showMethod": "show",
+        // "hideMethod": "hide"
+    };
+    
+    var instance = Split(['#mi', '#d'], {
+        direction: 'vertical',
+        sizes: [66, 28],
+        gutterSize: 5,
+        cursor: 'row-resize',
+        minSize: [0, 180],
+        onDrag: function() {
+            editor.resize();
+        },
+    });
+
+    function term_expand() {
+        var element = document.getElementById('term-expand').innerHTML;
+        if (element === '<i class="fas fa-expand-alt fa-lg"></i>' ) {
+            instance.setSizes([0, 94]);
+            editor.resize();
+            document.getElementById('term-expand').innerHTML = '<i class="fas fa-compress-alt fa-lg"></i>'
+        } else {
+            instance.setSizes([66, 28]);
+            editor.resize();
+            document.getElementById('term-expand').innerHTML = '<i class="fas fa-expand-alt fa-lg"></i>'
+        }
+        $('#term-expand').blur();
+        $('[data-toggle="tooltip"]').tooltip('hide');
+    }
+
+    editor.setOptions({
+        enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
+        enableLiveAutocompletion: true, // the editor completes the statement while you are typing
+        enableSnippets: true,
+        showPrintMargin: false, // hides the vertical limiting strip
+        fixedWidthGutter: true,
+        autoScrollEditorIntoView: true,
+        copyWithEmptySelection: true,
+        highlightActiveLine: false,
+    });
+
+    editor.setTheme("ace/theme/tomorrow_night_bright");
+    editor.container.style.lineHeight = 1.5;
+
+    editor_session[0] = ace.createEditSession(default_content, "ace/mode/python");
+    editor.setSession(editor_session[0]);
+    var active_editor_id = $('#editor-1').children('a');
+    var active_file_name = 'main.py';
+    var repl_host = get_host();
+    var command_list = [];
+    var command_index = 0;
+    var cur_cmd;
+    var hint_glow;
+
+    var y = document.getElementById('editor_footer');
+    var output = document.getElementById('output');
+    var exec_detail = document.getElementById('output-status');
+    var progress_status = document.getElementById('progress-status');
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+        delay: {show: 750, hide: 50}
+    })
+    });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            delay: { "show": 0, hide: 0 }
+        })
+    });
+
+    $('.popover-dismiss').popover({
+        trigger: 'hover'
+    });
+
+
+    $(".nav-tabs").on("click", "a", function(e) {
+        // e.stopPropagation();
+        e.preventDefault();
+        detail_chk = (e.detail === undefined) ? 1 : e.detail;
+        if (!$(this).hasClass('add-editor') && !$(this).children('input').hasClass('thVal') && detail_chk == 1) {
+            active_editor = parseInt($(this).parent().attr('id').split('-')[1]);
+            active_editor_id = $(this);
+
+            editor.setSession(editor_session[active_editor - 1]);
+            active_file_name = $(this).html();
+            $(this).tab('show');
+            editor.focus();
+            update_editor_footer();
+            undo_redo_update();
+        }
+    })
+    .on("click", "span", function() {
+        close_tab = $(this).parent();
+        close_tab.children('a').click();
+        $('#close_file_title').text('Close - ' + active_file_name);
+        if (editor.getValue() === "") {
+            close_editor_tab();
+        }
+        else {
+            $("#closeEditorTab").modal('show');
+        }
+    });
+
+    $('#redo-editor').attr('disabled', 'disabled');
+    $('#undo-editor').attr('disabled', 'disabled');
+
+    $('#rename_file').click(function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        active_editor_id.dblclick();
+    });
+
+    $('#undo-editor').click(function(e) {
+        editor.session.getUndoManager().undo();
+        undo_redo_update();
+
+    });
+
+    $('#redo-editor').click(function(e) {
+        editor.session.getUndoManager().redo();
+        undo_redo_update();
+    });
+
+    editor.getSession().on('change', function() {
+        undo_redo_update();
+    });
+
+    let theme = localStorage.getItem('theme') !== undefined ? localStorage.getItem('theme') : 'dark'
+
+    if ( theme === 'dark') {
+        $('body').addClass('dark');
+        editor.setTheme("ace/theme/tomorrow_night_bright");
+    }
+
+    $('.add-editor').click(function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        editor_cnt += 1;
+        editor_index += 1;
+        var id = editor_cnt;
+        
+        active_editor = id;
+        editor_session[active_editor - 1] = ace.createEditSession('', "ace/mode/python");
+        editor.setSession(editor_session[active_editor - 1]);
+
+        $(this).closest('li').before('<li id="editor-' + id + '"><a data-toggle="tab">Untitled' + id + '.py</a> <span> <i class="fa fa-times"></i></span></li>');
+        // $('.nav-tabs li:nth-child(' + id + ') a').click();
+
+        active_editor_id = $(".nav-tabs li").children('a').last();
+        active_editor_id.tab('show');
+        active_editor_id.dblclick();
+        update_editor_footer();
+        undo_redo_update();
+
+        editor.selection.on('changeCursor', function(e) {
+            update_editor_footer();
+        });
+
+        editor.selection.on('changeSelection', function(e) {
+            update_editor_footer();
+        });
+
+        editor.getSession().on('change', function() {
+            undo_redo_update();
+        });
+
+    });
+
+    $(document).on('dblclick', '.nav-tabs > li > a', function (event) {
+        if($(event.target).attr('class')!="thVal")
+            {
+                event.stopPropagation();
+                event.preventDefault();
+                var currentEle = $(this);
+                var value = $(this).html();
+                if (value.search('<input') === -1) updateVal(currentEle, value);
+        }
+    });
+
+    editor.focus();
+    editor.navigateFileEnd();
+
+    update_editor_footer();
+
+    editor.selection.on('changeCursor', function(e) {
+        update_editor_footer();
+    });
+
+    editor.selection.on('changeSelection', function(e) {
+        update_editor_footer();
+    });
+
+    $('.status button').attr('disabled','disabled');
+    $('#stop-btn').attr('disabled', 'disabled');
+
+    socket_options = { 
+        transports: ["websocket"], 
+        'timeout': 3000, 
+        'connect timeout': 3000,
+        'reconnection': true,
+        'reconnectionDelay': 1000,
+        'reconnectionDelayMax' : 5000,
+        'reconnectionAttempts': 5
+    };
+
+    socket_options['query'] = { type : "shell"};
+
+    // ace.config.loadModule("ace/ext/keybinding_menu", function(module) {
+    //     module.init(editor);
+    // });
+
+    $(document).keyup(function (e) {
+        IsCtrl = false;
+        IsShift = false;
+    }).keydown(function (e) {
+
+        // first capture Ctrl 
+        if (e.which == 17) { IsCtrl = true; }
+
+        // now capture Shift 
+        if (e.which == 16) { IsShift = true; }
+
+        switch (e.which) {
+
+            // now capture S and if Ctrl is pressed                                                                                                                                                                                          
+            // case 75: 
+            //     if (IsCtrl) { alert("Ctrl K pressed"); editor.showKeyboardShortcuts();} 
+            //     if (IsShift) { alert("Shift R pressed");  } 
+            //     e.preventDefault(); 
+            //     break;
+
+            // capture F8
+            case 119: run_python(); e.preventDefault(); break;
+            //F9
+            case 120: share_code_modal(); e.preventDefault(); break;
+            //F10
+            case 121: save_code_modal(); e.preventDefault(); break;
+
+            // capture ESC
+            // case 27: stop_python(); e.preventDefault(); break;
+        }
+    });
+
+    $('#output').on('click', function() {
+        $('#term-input').focus();
+    });
+
+    window.onbeforeunload=goodbye;
+
+</script>
+
+<script>
+  (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('stickybox', 'CEBICK3U', 'placement:wwwonline-pythoncom');
+    }
+  })();
+</script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e908e7d111adc12"></script>
+<!-- partial -->
+  
+</body>
+</html>

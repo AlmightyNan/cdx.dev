@@ -421,8 +421,8 @@ print(f'Adding {a} and {b} yields {addition(a, b)}.')\n\
     editor.getSession().on('change', function() {
         undo_redo_update();
     });
-
-    let theme = localStorage.getItem('theme') !== undefined ? localStorage.getItem('theme') : 'dark'
+  
+    const theme = 'dark';
 
     if ( theme === 'dark') {
         $('body').addClass('dark');

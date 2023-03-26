@@ -26,8 +26,7 @@ From now you can use this command:
 
 ## Demo
 
-Insert gif or link to demo
-
+![https://raw.githubusercontent.com/AlmightyNan/cdx.dev/main/assets/image.png]
 
 ## Authors
 

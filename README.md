@@ -1,7 +1,7 @@
 # cdx.dev
  Yet another online compiler for python.
  
- ## Installation
+## Installation
  
  To install this project you need the `vite` package or you can just open the `index.html` directly since it uses vanilla JS for the backend.
  
@@ -10,17 +10,17 @@
    npm install vite
  ```
  
- ## Deployment
+## Deployment
  
  To deploy the site to vercel or other deployment apps:
-```
-   npx vite
-```
- ## Demo
+ ```
+    npx vite
+ ```
+## Demo
  
  - View the live site at https://code.almightynan.cc
  
- ## License
+## License
  ```
  The MIT License (MIT)
  

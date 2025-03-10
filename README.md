@@ -3,21 +3,16 @@
  
  ## Installation
  
- To install this project you'll need the vite framework which is totally optional. Since its vanilla JS.
+ To install this project you'll need the vite framework which is totally optional. Since it uses HTML and vanilla JS for backend.
  
- You will only able to use it in localhost if you are not planning to deploy it to the web.
+ By install `vite` you can host it locally if you are not planning to deploy it to the web.
  ```bash
    npm install vite
  ```
  
  ## Deployment
  
- To build your vite project for the first time, run:
- ```
-   npm run build
- ```
- 
- From now you can use this to deploy the site:
+ To deploy the site:
 ```
    npx vite
 ```

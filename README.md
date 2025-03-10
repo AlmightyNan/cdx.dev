@@ -3,16 +3,16 @@
  
  ## Installation
  
- To install this project you'll need the vite framework which is totally optional. Since it uses HTML and vanilla JS for backend.
+ To install this project you need the `vite` package or you can just open the `index.html` directly since it uses vanilla JS for the backend.
  
- By install `vite` you can host it locally if you are not planning to deploy it to the web.
+ To install vite:
  ```bash
    npm install vite
  ```
  
  ## Deployment
  
- To deploy the site:
+ To deploy the site to vercel or other deployment apps:
 ```
    npx vite
 ```
@@ -22,4 +22,4 @@
  
  ## Authors
  
- - [@AlmightyNan](https://github.com/almightynan)
+ - [AlmightyNan](https://github.com/almightynan)
